@@ -1,0 +1,380 @@
+
+.article-management {
+  padding: 32px;
+  color: #183d30;
+  min-width: 0;
+}
+
+.article-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.article-eyebrow {
+  color: #a17c39;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.article-page-header h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(30px, 4vw, 40px);
+  margin: 8px 0;
+}
+
+.article-page-header p {
+  color: #7a837c;
+  font-size: 14px;
+  margin: 0;
+}
+
+.article-create-btn {
+  background: #214b3a;
+  color: #fffaf0;
+  border: 0;
+  padding: 13px 19px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: 0.2s;
+}
+
+.article-create-btn:hover {
+  background: #17392b;
+  transform: translateY(-1px);
+}
+
+.article-create-btn span {
+  font-size: 19px;
+  margin-right: 5px;
+}
+
+.article-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.article-stat-card {
+  background: #fffdf8;
+  border: 1px solid #e9e5da;
+  border-radius: 12px;
+  padding: 21px;
+}
+
+.article-stat-card span {
+  display: block;
+  color: #7a837c;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.article-stat-card strong {
+  font-size: 30px;
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.article-content-card {
+  background: #fffdf8;
+  border: 1px solid #e9e5da;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.article-toolbar {
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #ece8df;
+}
+
+.article-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 150px;
+  background: #f8f6ef;
+  border: 1px solid #e8e3d7;
+  padding: 0 13px;
+  border-radius: 8px;
+}
+
+.article-search span {
+  font-size: 24px;
+  color: #738075;
+}
+
+.article-search input {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  color: #183d30;
+}
+
+.article-toolbar select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #e8e3d7;
+  background: #fffdf8;
+  color: #183d30;
+  font: inherit;
+  font-size: 13px;
+}
+
+.article-refresh-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid #e8e3d7;
+  background: #fffdf8;
+  color: #214b3a;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.article-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.article-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.article-table th {
+  padding: 15px 18px;
+  color: #7a837c;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  background: #fbf9f2;
+}
+
+.article-table td {
+  padding: 17px 18px;
+  border-top: 1px solid #efede6;
+  font-size: 13px;
+  color: #59675e;
+}
+
+.article-title-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 360px;
+}
+
+.article-thumb {
+  width: 52px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 7px;
+  flex-shrink: 0;
+}
+
+.article-thumb-placeholder {
+  display: grid;
+  place-items: center;
+  background: #e7ecdf;
+  color: #214b3a;
+  font-weight: 800;
+}
+
+.article-title-cell strong {
+  display: block;
+  color: #183d30;
+  max-width: 270px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.article-title-cell small {
+  display: block;
+  color: #92998f;
+  margin-top: 5px;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.article-status {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: capitalize;
+  background: #ecece8;
+  color: #59675e;
+}
+
+.status-published {
+  background: #e2f2e6;
+  color: #26713f;
+}
+
+.status-draft {
+  background: #f1ead9;
+  color: #916a1d;
+}
+
+.status-scheduled {
+  background: #e5edfa;
+  color: #3c6096;
+}
+
+.article-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.article-actions button {
+  background: #f2f0e8;
+  color: #214b3a;
+  border: 1px solid #e8e3d7;
+  padding: 7px 11px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.article-actions button:hover {
+  background: #e6e9df;
+}
+
+.article-actions .article-delete-btn {
+  color: #ad3939;
+  background: #fff3f0;
+  border-color: #f0d8d2;
+}
+
+.article-actions .article-delete-btn:hover {
+  background: #fce3de;
+}
+
+.article-table-footer {
+  border-top: 1px solid #efede6;
+  padding: 15px 18px;
+  color: #7a837c;
+  font-size: 12px;
+}
+
+.article-empty {
+  text-align: center;
+  padding: 65px 20px;
+  color: #7a837c;
+  font-size: 14px;
+}
+
+.article-empty h3 {
+  color: #183d30;
+  margin-bottom: 8px;
+}
+
+.article-empty p {
+  margin-bottom: 20px;
+}
+
+.article-empty-icon {
+  font-size: 32px;
+  color: #b08b42;
+}
+
+.article-error {
+  padding: 24px;
+  text-align: center;
+  color: #a32e2e;
+}
+
+.article-error button {
+  cursor: pointer;
+  padding: 9px 14px;
+  border: 1px solid #e3c4c4;
+  border-radius: 7px;
+  background: #fff4f4;
+  color: #a32e2e;
+}
+
+@media (max-width: 900px) {
+  .article-management {
+    padding: 22px;
+  }
+
+  .article-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .article-management {
+    padding: 16px;
+  }
+
+  .article-page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .article-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .article-search {
+    flex-basis: 100%;
+  }
+
+  .article-toolbar select {
+    flex: 1;
+  }
+
+  .article-stat-card {
+    padding: 16px;
+  }
+
+  .article-stat-card strong {
+    font-size: 25px;
+  }
+}
+
+
+.article-seo-btn {
+  background: #edf4e9;
+  color: #315d43;
+  border: 1px solid #cddfc9;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.article-seo-btn:hover {
+  background: #315d43;
+  color: #ffffff;
+  border-color: #315d43;
+}
+
+.article-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,149 @@
+
+.article-feedback {
+  margin: 32px 0;
+  padding: 26px;
+  background: #f8f6ef;
+  border: 1px solid #e8e4d9;
+  border-radius: 14px;
+  color: #204b38;
+}
+
+.feedback-eyebrow {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #a17b34;
+}
+
+.feedback-heading h3 {
+  margin: 0 0 8px;
+  font-family: "Playfair Display", serif;
+  font-size: 25px;
+}
+
+.feedback-heading p {
+  margin: 0;
+  color: #6d786e;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.feedback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.feedback-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12px 18px;
+  border: 1px solid #d8dfd6;
+  border-radius: 9px;
+  background: #fff;
+  color: #315641;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.feedback-btn:hover:not(:disabled) {
+  border-color: #315641;
+  transform: translateY(-1px);
+}
+
+.feedback-btn.selected {
+  background: #204b38;
+  color: #fff;
+  border-color: #204b38;
+}
+
+.feedback-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.feedback-message {
+  margin: 15px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #315641;
+}
+
+.feedback-summary {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid #e4e5dc;
+}
+
+.feedback-summary-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  color: #6d786e;
+}
+
+.feedback-summary-top span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.feedback-summary-top strong {
+  color: #204b38;
+}
+
+.feedback-progress {
+  height: 7px;
+  margin-top: 12px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #e4e7de;
+}
+
+.feedback-progress-fill {
+  height: 100%;
+  background: #c49a48;
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+.feedback-btn:focus-visible {
+  outline: 2px solid #c49a48;
+  outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+  .article-feedback {
+    padding: 20px;
+  }
+
+  .feedback-heading h3 {
+    font-size: 22px;
+  }
+
+  .feedback-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .feedback-btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feedback-btn,
+  .feedback-progress-fill {
+    transition: none;
+  }
+}
