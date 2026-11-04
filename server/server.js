@@ -74,6 +74,45 @@ app.get("/health", (req, res) => {
   });
 });
 
+
+app.get("/debug-db-network", async (req, res) => {
+  const net = require("net");
+
+  const host = process.env.DB_HOST;
+  const port = Number(process.env.DB_PORT || 3306);
+
+  const socket = new net.Socket();
+
+  socket.setTimeout(8000);
+
+  socket.once("connect", () => {
+    socket.destroy();
+    res.json({
+      success: true,
+      message: "TCP connection to database succeeded",
+    });
+  });
+
+  socket.once("timeout", () => {
+    socket.destroy();
+    res.status(504).json({
+      success: false,
+      message: "Database TCP connection timed out",
+    });
+  });
+
+  socket.once("error", (err) => {
+    res.status(502).json({
+      success: false,
+      code: err.code || "UNKNOWN",
+      message: "Database TCP connection failed",
+    });
+  });
+
+  socket.connect(port, host);
+});
+
+
 // API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/articles", articleRoutes);
