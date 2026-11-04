@@ -4,21 +4,31 @@ import {
   Routes,
   Route,
   Navigate,
+  Link,
 } from "react-router-dom";
 
 import "./style.css";
 
-// Shared components
+// Shared Components
 import Layout from "./components/Layout";
 
-// Public pages
+// Public Pages
 import Home from "./pages/Home";
 import Contact from "./Contact";
 import ArticleDetails from "./pages/ArticleDetails";
 import Articles from "./pages/Articles";
 
-// Reader authentication
+// Magazine & Book Pages
+import Magazines from "./pages/Magazines";
+import MagazineDetail from "./pages/MagazineDetail";
+import Books from "./pages/Books";
+import BookDetail from "./pages/BookDetail";
+import BookReader from "./pages/BookReader";
+import Upcoming from "./pages/Upcoming";
+
+// Reader Authentication
 import { ReaderAuthProvider } from "./context/ReaderAuthContext";
+
 import ReaderLogin from "./pages/reader/ReaderLogin";
 import ReaderRegister from "./pages/reader/ReaderRegister";
 import SavedArticles from "./pages/reader/SavedArticles";
@@ -27,12 +37,13 @@ import Profile from "./pages/reader/Profile";
 import ReadingHistory from "./pages/reader/ReadingHistory";
 import ReaderDashboard from "./pages/reader/ReaderDashboard";
 
-// Admin authentication
+// Admin Authentication
 import { AdminAuthProvider } from "./context/AdminAuthContext";
+
 import AdminProtectedRoute from "./components/admin/AdminProtectedRoute";
 import AdminLayout from "./components/admin/AdminLayout";
 
-// Admin pages
+// Admin Pages
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ArticleManagement from "./pages/admin/ArticleManagement";
@@ -41,7 +52,7 @@ import EditArticle from "./pages/admin/EditArticle";
 import ReaderManagement from "./pages/admin/ReaderManagement";
 import ArticleSEO from "./pages/admin/ArticleSEO";
 
-// Coming Soon page
+// Coming Soon Page
 function ComingSoon({ title }) {
   return (
     <main className="st-coming-soon">
@@ -56,9 +67,9 @@ function ComingSoon({ title }) {
         We are preparing this space for curious minds.
       </p>
 
-      <a className="primary-button" href="/">
+      <Link className="primary-button" to="/">
         Return Home ↗
-      </a>
+      </Link>
     </main>
   );
 }
@@ -77,9 +88,9 @@ function NotFound() {
         The page you are looking for does not exist.
       </p>
 
-      <a className="primary-button" href="/">
+      <Link className="primary-button" to="/">
         Back to Home ↗
-      </a>
+      </Link>
     </main>
   );
 }
@@ -90,16 +101,16 @@ function App() {
       <AdminAuthProvider>
         <ReaderAuthProvider>
           <Routes>
-            {/* =========================
+
+            {/* =================================
                 ADMIN LOGIN
-            ========================= */}
+            ================================= */}
 
             <Route
               path="/admin/login"
               element={<AdminLogin />}
             />
 
-            {/* Admin root redirect */}
             <Route
               path="/admin"
               element={
@@ -110,8 +121,13 @@ function App() {
               }
             />
 
+            {/* =================================
+                PROTECTED ADMIN ROUTES
+            ================================= */}
+
             <Route element={<AdminProtectedRoute />}>
               <Route element={<AdminLayout />}>
+
                 <Route
                   path="/admin/dashboard"
                   element={<AdminDashboard />}
@@ -136,45 +152,86 @@ function App() {
                   path="/admin/readers"
                   element={<ReaderManagement />}
                 />
+
                 <Route
                   path="/admin/articles/:articleId/seo"
                   element={<ArticleSEO />}
                 />
+
               </Route>
             </Route>
 
-            {/* =========================
+            {/* =================================
                 PUBLIC WEBSITE
-            ========================= */}
+            ================================= */}
 
             <Route element={<Layout />}>
-              {/* Home */}
+
+              {/* HOME */}
               <Route
                 path="/"
                 element={<Home />}
               />
 
-              {/* Contact */}
-              <Route
-                path="/contact"
-                element={<Contact />}
-              />
-
-              {/* All articles */}
+              {/* ARTICLES */}
               <Route
                 path="/articles"
                 element={<Articles />}
               />
 
-              {/* Single article */}
               <Route
                 path="/articles/:slug"
                 element={<ArticleDetails />}
               />
 
-              {/* =========================
+              {/* MAGAZINES */}
+              <Route
+                path="/magazines"
+                element={<Magazines />}
+              />
+
+              <Route
+                path="/magazines/:slug"
+                element={<MagazineDetail />}
+              />
+
+              {/* Old URL Redirect */}
+              <Route
+                path="/magazine"
+                element={
+                  <Navigate
+                    to="/magazines"
+                    replace
+                  />
+                }
+              />
+
+              {/* BOOKS */}
+              <Route
+                path="/books"
+                element={<Books />}
+              />
+
+              <Route
+                path="/books/:slug"
+                element={<BookDetail />}
+              />
+
+              {/* Book Reader */}
+              <Route
+                path="/books/:slug/read"
+                element={<BookReader />}
+              />
+
+              {/* UPCOMING CONTENT */}
+              <Route
+                path="/upcoming"
+                element={<Upcoming />}
+              />
+
+              {/* =================================
                   READER AUTHENTICATION
-              ========================= */}
+              ================================= */}
 
               <Route
                 path="/login"
@@ -186,12 +243,12 @@ function App() {
                 element={<ReaderRegister />}
               />
 
-
-              {/* =========================
-    PROTECTED READER PAGES
-========================= */}
+              {/* =================================
+                  PROTECTED READER ROUTES
+              ================================= */}
 
               <Route element={<ReaderProtectedRoute />}>
+
                 <Route
                   path="/reader/dashboard"
                   element={<ReaderDashboard />}
@@ -211,27 +268,12 @@ function App() {
                   path="/reading-history"
                   element={<ReadingHistory />}
                 />
+
               </Route>
 
-
-
-              {/* =========================
+              {/* =================================
                   OTHER PAGES
-              ========================= */}
-
-              <Route
-                path="/magazine"
-                element={
-                  <ComingSoon title="The Digital Magazine" />
-                }
-              />
-
-              <Route
-                path="/books"
-                element={
-                  <ComingSoon title="Your Digital Bookshelf" />
-                }
-              />
+              ================================= */}
 
               <Route
                 path="/about"
@@ -240,15 +282,22 @@ function App() {
                 }
               />
 
-              {/* =========================
+              <Route
+                path="/contact"
+                element={<Contact />}
+              />
+
+              {/* =================================
                   404
-              ========================= */}
+              ================================= */}
 
               <Route
                 path="*"
                 element={<NotFound />}
               />
+
             </Route>
+
           </Routes>
         </ReaderAuthProvider>
       </AdminAuthProvider>

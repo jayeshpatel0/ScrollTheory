@@ -1,0 +1,577 @@
+
+/* =========================================
+   ScrollTheory - Book Reader
+========================================= */
+
+.book-reader-page {
+  --reader-primary: #1d2925;
+  --reader-accent: #c18b52;
+  --reader-muted: #777d78;
+  --reader-border: #e9e8e3;
+  --reader-bg: #fbfaf7;
+
+  min-height: 100vh;
+  padding: 28px 24px 70px;
+  background: var(--reader-bg);
+  color: var(--reader-primary);
+  font-family: inherit;
+}
+
+.reader-container {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+/* Topbar */
+
+.reader-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--reader-border);
+}
+
+.reader-back-link,
+.reader-chapters-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--reader-muted);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.reader-back-link {
+  transition: color 0.2s ease;
+}
+
+.reader-back-link:hover {
+  color: var(--reader-accent);
+}
+
+.reader-chapters-toggle {
+  justify-content: center;
+  padding: 10px 16px;
+  border: 1px solid var(--reader-border);
+  border-radius: 5px;
+  background: #fff;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reader-chapters-toggle:hover {
+  border-color: var(--reader-accent);
+  color: var(--reader-primary);
+}
+
+/* Reading Progress */
+
+.reader-progress-section {
+  padding: 22px 0 30px;
+}
+
+.reader-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 10px;
+  color: var(--reader-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.reader-progress-labels span:last-child {
+  letter-spacing: 0;
+  font-size: 12px;
+}
+
+.reader-progress-track {
+  width: 100%;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #e8e5de;
+}
+
+.reader-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--reader-accent);
+  transition: width 0.3s ease;
+}
+
+/* Main Layout */
+
+.reader-layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  align-items: start;
+  gap: 65px;
+}
+
+/* Sidebar */
+
+.reader-sidebar {
+  position: sticky;
+  top: 24px;
+  padding: 22px 16px;
+  border: 1px solid var(--reader-border);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.reader-sidebar-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--reader-border);
+}
+
+.reader-sidebar-heading span {
+  color: var(--reader-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.reader-sidebar-heading strong {
+  color: var(--reader-primary);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.reader-sidebar-book {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--reader-border);
+  color: var(--reader-primary);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.reader-sidebar-book svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--reader-accent);
+}
+
+/* Chapter Navigation */
+
+.reader-chapter-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 15px;
+}
+
+.reader-chapter-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 13px 10px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--reader-muted);
+  text-align: left;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.55;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reader-chapter-link:hover {
+  background: #f7f5f0;
+  color: var(--reader-primary);
+}
+
+.reader-chapter-active {
+  background: #f5eee4;
+  color: var(--reader-primary);
+}
+
+.reader-chapter-active .reader-chapter-number {
+  color: var(--reader-accent);
+  font-weight: 700;
+}
+
+.reader-chapter-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 24px;
+  min-height: 24px;
+  color: #999b95;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+}
+
+.reader-chapter-title {
+  flex: 1;
+}
+
+/* Reader Content */
+
+.reader-content {
+  width: 100%;
+  max-width: 760px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 10px 0 0;
+}
+
+.reader-chapter-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+  color: var(--reader-accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.reader-chapter-meta span:last-child {
+  color: var(--reader-muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.reader-chapter-heading {
+  margin: 0;
+  color: var(--reader-primary);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.reader-chapter-divider {
+  width: 55px;
+  height: 3px;
+  margin: 28px 0 35px;
+  background: var(--reader-accent);
+}
+
+/* Actual Book Text */
+
+.reader-book-content {
+  color: #3e4741;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+
+.reader-book-content p {
+  margin: 0 0 25px;
+  white-space: pre-line;
+}
+
+.reader-book-content p:first-child::first-letter {
+  color: var(--reader-accent);
+}
+
+/* Completion Button */
+
+.reader-completion {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 42px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid var(--reader-border);
+}
+
+.reader-complete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 12px 18px;
+  border: 1px solid var(--reader-primary);
+  border-radius: 4px;
+  background: var(--reader-primary);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reader-complete-btn:hover:not(:disabled) {
+  background: transparent;
+  color: var(--reader-primary);
+}
+
+.reader-complete-btn.completed {
+  border-color: #dcebdc;
+  background: #e6f3e8;
+  color: #286c3c;
+  cursor: default;
+}
+
+/* Previous / Next Navigation */
+
+.reader-navigation {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 18px;
+  padding-top: 28px;
+}
+
+.reader-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px 0;
+  border: 0;
+  background: transparent;
+  color: var(--reader-primary);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.reader-nav-btn:hover:not(:disabled) {
+  color: var(--reader-accent);
+}
+
+.reader-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.reader-nav-btn span {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.reader-nav-btn small {
+  color: var(--reader-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.reader-nav-next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.reader-finish-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  background: var(--reader-primary);
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.reader-finish-link:hover {
+  background: #344a40;
+}
+
+/* Messages */
+
+.reader-message {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 25px;
+  text-align: center;
+}
+
+.reader-message h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.reader-message p {
+  color: var(--reader-muted);
+  line-height: 1.7;
+}
+
+.reader-message a {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 4px;
+  background: var(--reader-primary);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* Tablet */
+
+@media (max-width: 950px) {
+  .reader-layout {
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .reader-sidebar {
+    padding: 18px 12px;
+  }
+
+  .reader-book-content {
+    font-size: 18px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .book-reader-page {
+    padding: 18px 16px 45px;
+  }
+
+  .reader-topbar {
+    padding-bottom: 18px;
+  }
+
+  .reader-back-link,
+  .reader-chapters-toggle {
+    font-size: 12px;
+  }
+
+  .reader-chapters-toggle {
+    padding: 9px 12px;
+  }
+
+  .reader-progress-section {
+    padding: 18px 0 22px;
+  }
+
+  .reader-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .reader-sidebar {
+    display: none;
+    position: static;
+    order: -1;
+  }
+
+  .reader-sidebar.reader-sidebar-open {
+    display: block;
+  }
+
+  .reader-sidebar-heading {
+    padding-bottom: 14px;
+  }
+
+  .reader-chapter-nav {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .reader-content {
+    padding-top: 8px;
+  }
+
+  .reader-chapter-heading {
+    font-size: 34px;
+    letter-spacing: -0.5px;
+  }
+
+  .reader-chapter-divider {
+    margin: 22px 0 28px;
+  }
+
+  .reader-book-content {
+    font-size: 17px;
+    line-height: 1.9;
+  }
+
+  .reader-book-content p {
+    margin-bottom: 21px;
+  }
+
+  .reader-completion {
+    margin-top: 30px;
+  }
+
+  .reader-complete-btn {
+    width: 100%;
+  }
+
+  .reader-navigation {
+    gap: 10px;
+  }
+
+  .reader-nav-btn {
+    gap: 7px;
+  }
+
+  .reader-nav-btn span {
+    font-size: 11px;
+  }
+
+  .reader-finish-link {
+    padding: 11px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Small Phones */
+
+@media (max-width: 380px) {
+  .book-reader-page {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .reader-chapter-heading {
+    font-size: 29px;
+  }
+
+  .reader-book-content {
+    font-size: 16px;
+  }
+
+  .reader-progress-labels {
+    font-size: 9px;
+    letter-spacing: 0.5px;
+  }
+
+  .reader-navigation {
+    flex-wrap: wrap;
+  }
+}
